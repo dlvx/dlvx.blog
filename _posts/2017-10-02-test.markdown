@@ -1,0 +1,8 @@
+---
+layout: default
+title:  "Test post"
+date:   2016-10-02 16:22:00
+categories: main
+---
+
+This is a test
