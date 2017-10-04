@@ -1,8 +1,11 @@
 ---
-layout: default
+layout: post
 title:  "Test post"
 date:   2016-10-02 16:22:00
 categories: main
+tags:
+- Javascript
+- ES6
 ---
 
 This is a test
