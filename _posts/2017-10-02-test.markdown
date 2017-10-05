@@ -3,6 +3,7 @@ layout: post
 title:  "Test post"
 date:   2016-10-02 16:22:00
 categories: main
+permalink: /:year/:title/
 tags:
 - Javascript
 - ES6
