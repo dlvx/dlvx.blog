@@ -1,6 +1,28 @@
 --- 
 ---
 
+/* Header */
+
+/* Color Variables */
+$gray1: #eaeaea;
+$link-secondary: #008080;
+
+/* Font sizes */
+a.title {
+    font-size: 2em;
+}
+
+/* General */
+.card {
+    border-bottom: 1px solid $gray1;
+    margin-bottom: 10px;
+}
+
 .tag {
-    color: #008080;
+    color: $link-secondary;
+}
+
+/* Paddings */
+.padding-10 {
+    padding: 10px
 }
