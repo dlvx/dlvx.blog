@@ -6,6 +6,7 @@
 /* Color Variables */
 $gray1: #eaeaea;
 $link-secondary: #008080;
+$text-secondary: #8a979c;
 
 /* Font sizes */
 a.title {
@@ -20,6 +21,11 @@ a.title {
 
 .tag {
     color: $link-secondary;
+}
+
+.reading-time {
+    color: $text-secondary;
+    font-style: italic;
 }
 
 /* Paddings */

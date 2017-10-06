@@ -11,6 +11,8 @@ title: {{ site.name }}
         <div>
             <a href="{{ site.baseurl }}{{ post.url }}" class="title">{{ post.title }}</a>
         </div>
+        {% include reading_time.html post=post.content %}
+        <br/>
         <span>{{ post.date | date_to_string }}</span>
         <br/>
         <span>Tags: 
