@@ -8,7 +8,7 @@ layout: default
     {% for post in site.posts %}
       <div class="card padding-10">
         <div>
-            <a href="{{ site.baseurl }}{{ post.url }}" class="title">{{ post.title }}</a>
+            <a href="{{ site.baseurl }}{{ post.url }}#disqus_thread" class="title">{{ post.title }}</a>
         </div>
         {% include reading_time.html post=post.content %}
         <br/>
