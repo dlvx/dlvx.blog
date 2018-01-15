@@ -9,7 +9,19 @@ tags:
 
 These are some javascript questions that I've prepared for technical interviews. Some are pretty easy but very important and some are intermidiate-ish. Some are not strictly related to javascript but to programming in general.
 
-#1. What are primitive values? 
+# What is an HTTP request?
+
+HTTP functions as a request–response protocol in the client–server computing model. A web browser, for example, may be the client and an application running on a computer hosting a website may be the server. The client submits an HTTP request message to the server. The server, which provides resources such as HTML files and other content, or performs other functions on behalf of the client, returns a response message to the client. The response contains completion status information about the request and may also contain requested content in its message body.
+
+Mention 2 HTTP Methods and in which scenarios these are used. 
+
+# Sync vs Async
+
+Sync "One at a time, and in order"
+Async "More than one at a time"
+
+
+# What are primitive values? 
 
 A primitive is a type of data that represents a single value. There are five primitive types in Javascript which are: 
 
@@ -21,7 +33,7 @@ A primitive is a type of data that represents a single value. There are five pri
 
 Primitives are not objects, which means they don't have properties. 
 
-#2. What is the difference between *null* and *undefined* ?
+# What is the difference between *null* and *undefined* ?
 
 ***undefined*** is a special value given to variables that haven't been set, or in other words, that haven't yet been assigned a value. 
 
@@ -43,20 +55,22 @@ let a = undefined //not recommended
 let b = null //recommended
 {% endhighlight %}
 
-##If *null* is a primitive type then why **typeof** null equals 'object' ?
+## If *null* is a primitive type then why **typeof** null equals 'object' ?
 [Read this](http://2ality.com/2013/10/typeof-null.html) and [this](https://stackoverflow.com/questions/18808226/why-is-typeof-null-object) :)
 
-#3. What is an object in Javascript ?
+# What is an object in Javascript ?
 
 The simplest definition of an object in Javascript, as said by **Anthony Alicea** in his course **Javascript: Understanding the Weird Parts** is that "*an object is a collection of key/value pairs*" and these key/value pairs are what we call *object properties* when the value is a primitive or an object and methods when the value is a function.
 
 [More info here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
 
-#5. What is a method?
+# What is an array?
+
+# What is a method?
 
 A method is just a function that belongs to an object. 
 
-#6. What is the meaning of the keyword 'this' in javascript ?
+# What is the meaning of the keyword 'this' in javascript ?
 
 ***this*** is a property available inside a function that refers to the object that invokes it, in other words, it is a shortcut to the invoking object. It will always refer to an object. It is also available in the global scope, in which it will refer to the global window object.
 
@@ -89,13 +103,13 @@ c.log(); //'this' points to the object 'c' because it is 'c' that it's invoking 
 
 [More info here](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/), [here](https://www.sitepoint.com/what-is-this-in-javascript/) and [here](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/)
 
-#7. What does the bind() method do?
+# What does the bind() method do?
 
-#8. What is the scope?
+# What is the scope?
 
-#9. What is hoisting? 
+# What is hoisting? 
 
-#10. Sync vs Async
+
 ------
 You'll find this post in your `_posts` 
 
