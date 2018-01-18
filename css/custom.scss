@@ -5,15 +5,29 @@
 
 /* Color Variables */
 $gray1: #eaeaea;
+$title-primary: #2e3639;
+$link-title: $title-primary;
 $link-secondary: #008080;
 $text-secondary: #8a979c;
 
-/* Font sizes */
-a.title {
-    font-size: 2em;
+/* General */
+
+.page-header { 
+    background-color: #000000; 
+    background-image: none; 
 }
 
-/* General */
+.main-content {
+    h1, h2, h3, h4, h5, h6 {
+        color: $title-primary
+    }
+
+    a.title {
+        color: $link-title;
+        font-size: 2em;
+    }
+}
+
 .card {
     border-bottom: 1px solid $gray1;
     margin-bottom: 10px;

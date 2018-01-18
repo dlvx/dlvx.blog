@@ -1,6 +1,6 @@
 # Setup
-title:        José Del Valle
-tagline:      A responsive theme for your project on GitHub Pages
+title:        JSBW
+tagline:      Javascript...but why?
 baseurl:      ""
 paginate:     1
 include:      ["_pages"]

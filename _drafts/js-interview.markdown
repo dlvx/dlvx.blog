@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "JS Interview"
+tagline: "JS interview questions"
 date:   2018-01-4 17:50:00
 categories: main
 tags:

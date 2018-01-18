@@ -6,7 +6,7 @@
     {{ site.title }}
     {% endif %}
   </h1>
-  <h2 class="project-tagline">{{ site.tagline }}</h2>
+  <h2 class="project-tagline">{% if page.tagline %}{{ page.tagline }}{% else %}{{ site.tagline }}{% endif %}</h2>
   <!-- <a href="#" class="btn">View on GitHub</a>
   <a href="#" class="btn">Download .zip</a>
   <a href="#" class="btn">Download .tar.gz</a> -->
