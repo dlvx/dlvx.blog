@@ -1,5 +1,5 @@
 # Setup
-title:        JSBW
+title:        "{...jsbw}"
 tagline:      Javascript...but why?
 baseurl:      ""
 paginate:     1
@@ -9,7 +9,7 @@ permalink:    /:title/
 # About/contact
 author:
   name:       José Del Valle
-  url:        http://dlvx.github.io
+  url:        http://dlvx.github.io/about
 
 # Gems
 gems:

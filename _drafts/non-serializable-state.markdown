@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "Why we shouldn't put functions inside the state"
+title:  "Putting non-serializable data in the Redux store"
+tagline: "And why you shouldn't do it"
 date:   2018-01-17 17:50:00
 categories: main
 tags:
