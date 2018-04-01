@@ -11,12 +11,12 @@ tags:
 Welcome to the first part of my **Tricky JS Interview Questions** series.
 I've been interviewing people at my current job for a couple of months now, specifically Javascript and Front End developers. It has been a great oportunity to revisit some of the basics and of course to keep improving my knowlendge and skillset. 
 
-I've been improving my interview questions from time to time and I've also gotten very cool question ideas from my friends at the company. The questions I will be sharing here are not difficult -well maybe some- but tricky. These involve knowing the basics and core concepts of Javascript. 
+I've been improving my interview questions from time to time and I've also gotten very cool question ideas from my friends at the company. The questions I will be sharing here are not difficult ---well maybe some--- but tricky. These involve knowing the basics and core concepts of Javascript. 
 Each part is composed of several questions related to the same topic, starting with the easy ones so the interviewee gets into a confort zone and then we just strike with the tricky ones.  
 
 The idea with this is to see how concentrated the interviewees are, how good are they at the basics and how good are they at deduction. 
 
-I have asked this question to around 20 people now, some with little experience and some with several years of experience, even more years than me - sometimes a lot more - and they all have failed it. 
+I have asked this question to around 20 people now, some with little experience and some with several years of experience, even more years than me ---sometimes a lot more--- and they all have failed it. 
 
 So...let's start! 
 
@@ -67,7 +67,7 @@ For now let's just agree with the interviewee and continue with the next questio
 {% endhighlight %}
 
 What do you think is the result here? False?
-If you said **false** then you're **wrong**. I was wrong too when I first saw this. Both the brain and Javascript have tricked us. So far all my interviewees have failed too. Not because this is difficult, but because we just don't pay enough attention to what's happening. We could still don't know what **Coercion** is and still get this right. We just have to go step by step. Let's put this in a more verbose way -sorry about the long variable names-:
+If you said **false** then you're **wrong**. I was wrong too when I first saw this. Both the brain and Javascript have tricked us. So far all my interviewees have failed too. Not because this is difficult, but because we just don't pay enough attention to what's happening. We could still don't know what **Coercion** is and still get this right. We just have to go step by step. Let's put this in a more verbose way:
 
 {% highlight javascript %}
 
@@ -87,7 +87,7 @@ Having said that.
 
 ### What is Coercion ?
 
-It just means Javascript will implicitly convert a value's type to another, this is possible thanks to its dynamic typing - type checking being done at run time -. **Type Casting** is when we do that **explicitly** and **Coercion** is when it happens **implicitly**.
+It just means Javascript will implicitly convert a value's type to another, this is possible thanks to its dynamic typing ---type checking being done at run time---. **Type Casting** is when we do that **explicitly** and **Coercion** is when it happens **implicitly**.
 
 So, if we go back to two of the first easy questions where we had this:
 
@@ -101,7 +101,7 @@ So, if we go back to two of the first easy questions where we had this:
 
 In both cases `'1'` (a string) will be **coerced** to `1` (a number) so the evaluation can compare the two numbers. This is just one scenario of many where coercion can take place.
 
-The good old Javascript messing with things at convenience. This is why it is recommended to do comparissons with `===` rather than `==` because `===` will check if the type is the same - no coercion happening -, whereas `==` allows for coercion. That's why `3 == '3'` is **true** but `3 === '3'` is **false**. 
+The good old Javascript messing with things at convenience. This is why it is recommended to do comparissons with `===` rather than `==` because `===` will check if the type is the same ---no coercion happening---, whereas `==` allows for coercion. That's why `3 == '3'` is **true** but `3 === '3'` is **false**. 
 
 There you have it, Javascript had just tricked us. 
 
