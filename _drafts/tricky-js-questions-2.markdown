@@ -35,7 +35,7 @@ For now, we just hope the interviewee knows what is the difference between both 
 
 This gets a little more JS specific. So, in which case does assignment by value happen and in which case does assigment by reference happen? 
 
-Assignment by value happens when we assign **primitives** to a variable and assignment by reference happens when we assign **objects** to a variable. The same happens when we pass them as parameters to a function. We hope the interviewees already know what **primitive data types** are and what **objects** are so what I usually do is to I ask that at the beginning of the interview, for example asking them to mention the primitive types that are available in Javascript.
+Assignment by value happens when we assign **primitives** to a variable and assignment by reference happens when we assign **objects** to a variable. The same happens when we pass them as parameters to a function. We hope the interviewees already know what **primitive data types** are and what **objects** are so what I usually do is to ask that at the beginning of the interview, for example asking them to mention the primitive types that are available in Javascript.
 
 Let's see when does assignment by value happens:
 
