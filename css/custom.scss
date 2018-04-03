@@ -17,6 +17,22 @@ $text-secondary: #8a979c;
     background-image: none; 
 }
 
+nav.main-nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: right;
+}
+
+nav.main-nav li,
+nav.main-nav a {
+	display: inline-block;
+}
+
+nav.main-nav li a {
+	padding: 10px;
+}
+
 .main-content {
     h1, h2, h3, h4, h5, h6 {
         color: $title-primary
