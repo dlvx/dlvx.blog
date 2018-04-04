@@ -12,21 +12,65 @@ Welcome to the first part of my **Tricky JS Interview Questions** series.
 I've been interviewing people at my current job for a couple of months now, specifically Javascript and Front End developers. It has been a great oportunity to revisit some of the basics and of course to keep improving my knowlendge and skillset. 
 
 I've been improving my interview questions from time to time and I've also gotten very cool question ideas from my friends at the company. The questions I will be sharing here are not difficult ---well maybe some--- but tricky. These involve knowing the basics and core concepts of Javascript. 
-Each part is composed of several questions related to the same topic. 
-
-I usually start with the easy questions so the interviewee gets into a confort zone and then I just strike with the tricky ones but you can just ask the tricky ones from the beginning if you like.
 
 The idea with this is to see how concentrated the interviewees are, how good they are at the basics and how good they are at deduction. 
 
-I have asked today's tricky question to around 20 people now, some with little experience and some with several years of experience, even more years than me ---sometimes a lot more--- and they all have failed it. 
+I usually start with simpler questions ---but related--- if the interviewee is a Junior Dev but in most cases I just ask the tricky questions right away. 
+
+I have asked today's question to around 20 people now, some with little experience and some with several years of experience, even more years than me ---sometimes a lot more--- and so far they all have failed it. 
+
+## What can we expect from the interviewee by asking this question? 
+
+If the interviewee answer this question correctly and explain why the result is like it is, that would mean that he or she knows or understand what **Coercion** is and how **Operators** work in Javascript ---or at least has had some experience with it---.
 
 So...let's start! 
 
-This part is related to **Coercion and Operators**.
+As I said, this part is related to **Coercion and Operators**.
 
-As I said before, we just start with the easy ones:
+-----
 
-## What is the result of each of the following operations? 
+## What does the following console.log print ?
+
+{% highlight javascript %}
+
+console.log(3 < 2 < 1); 
+
+{% endhighlight %}
+
+What do you think is the result here?
+
+Everyone I've interviewed has said this is **false**. If you agree with that well...that's wrong. I was wrong too when I first saw this. The problem here is that if we don't know what **Coercion** is or at least we haven't experienced it yet and if we don't know how **Operators** work, our brain will trick us and we will think the result is **false** because of course `3` is not less than `2` and `2` is not less than `1`. 
+
+One problem I've seen is that the interviewees answer this right away without taking a moment and analyzing what is really happening. 
+
+Let's put this in a more verbose way ---sorry for the long variable names---:
+
+{% highlight javascript %}
+
+var isThreeLessThanTwo = 3 < 2; // This results in false
+var isThreeLessThanTwoLessThanOne = isThreeLessThanTwo < 1 // is false is less than 1 ?
+
+{% endhighlight %}
+
+We have splitted the tricky operation into two and assigned each part to a different variable. Let's assign the first part `3 < 2` to the variable `isThreeLessThanTwo`. 
+
+What would be the value assigned to that variable? **false** cause `3 < 2` is **false**.
+
+Now let's go to the variable `isThreeLessThanTwoLessThanOne` and assign it the value of `isThreeLessThanTwo < 1`. That would be the same as doing `false < 1`. 
+
+Even tho we wouldn't know what **Coercion** is and when does it happen, it's still probable that we have experienced it when using **booleans** as **false** and **true** are implicitly converted to **0** and **1** respectivelly.
+
+So going back to `isThreeLessThanTwoLessThanOne`, we would be asking if `false < 1` which is the same as doing `0 < 1`, which is **true**.
+
+This means that `3 < 2 < 1` is in fact **true**.
+
+Having said that.
+
+## What is Coercion ?
+
+It just means Javascript will implicitly convert a value's type to another, this is possible thanks to its dynamic typing ---type checking being done at run time---. **Type Casting** is when we do that **explicitly** and **Coercion** is when it happens **implicitly**.
+
+So, let's take a look at some simpler operations:
 
 {% highlight javascript %}
 
@@ -40,64 +84,23 @@ false < true
 
 {% endhighlight %}
 
-The results for those operations are `false`, `true`, `true` and `true` respectivelly. 
-There is some **Coercion** going on here but we'll talk about that in a minute. If the interviewees fail at these then we are sure they don't know what coercion is or when does it happens. 
-
-## What about the following ?  
+Javascript will *coerce* some of the values in order to make the operation possible. This is what Javascript is doing behind the scenes:
 
 {% highlight javascript %}
 
-1 < 2 < 3; 
+0 > 1
+
+0 < 1
+
+1 < 2
+
+3 > 1
 
 {% endhighlight %}
 
-Here's where the trick starts actually. We were taught in school that 1 is less than 2 which is less than 3. That's easy. The interviewee will probably say the result of this operation is in fact **true**. Well, yes...it is, but not because what I've just said. Javascript's logic is different. We'll get back to that after the following question.
+Just like we saw before, `false` and `true` are *coerced* into `0` and `1` respectively.
 
-If the interviewee says this is **true** we just agree with that and continue with the next question ---the tricky one---.
-
-
-## What about this one ?
-
-{% highlight javascript %}
-
-3 < 2 < 1; 
-
-{% endhighlight %}
-
-What do you think is the result here? False?
-If you said **false** then you're **wrong**. I was wrong too when I first saw this. Both the brain and Javascript have tricked us. So far all my interviewees have failed too. Not because this is difficult, but because we just don't pay enough attention to what's happening. We could still don't know what **Coercion** is and still get this right. We just have to go step by step. Let's put this in a more verbose way:
-
-{% highlight javascript %}
-
-var isThreeLessThanTwo = 3 < 2; // This results in false
-var isThreeLessThanTwoLessThanOne = isThreeLessThanTwo < 1 // is false is less than 1 ?
-
-{% endhighlight %}
-
-We have divided the tricky operation in two and assigned each part to a different variable. Let's assign the first part `3 < 2` to the variable `isThreeLessThanTwo`. What would be the value assigned to that variable? **false** cause `3 < 2` is **false**.
-Now let's go to the variable `isThreeLessThanTwoLessThanOne` and assign it the value of `isThreeLessThanTwo < 1`. That would be the same as doing `false < 1`. Even tho we wouldn't know what **Coercion** means and when does it happen, we would still know or at least have heard that **false** is converted to **0** and **true** is converted to **1**.
-
-So going back to `isThreeLessThanTwoLessThanOne`, we would be asking if `false < 1` which is **true**.
-
-This means that `3 < 2 < 1` is in fact **true**.
-
-Having said that.
-
-## What is Coercion ?
-
-It just means Javascript will implicitly convert a value's type to another, this is possible thanks to its dynamic typing ---type checking being done at run time---. **Type Casting** is when we do that **explicitly** and **Coercion** is when it happens **implicitly**.
-
-So, if we go back to two of the first easy questions where we had this:
-
-{% highlight javascript %}
-
-'1' < 2
-
-3 > '1'
-
-{% endhighlight %}
-
-In both cases `'1'` (a string) will be **coerced** to `1` (a number) so the evaluation can compare the two numbers. This is just one scenario of many where coercion can take place. Another one would be the one mentioned above where `false` is converted or *coerced* to `0` and `true` is coerced to `1`.
+In the last two cases `'1'` (a string) will be **coerced** to its numerical representation so the two numbers can be evaluated. These are just a few scenarios when coercion takes place.
 
 The good old Javascript messing with things at convenience. This is why it is recommended to do comparissons with `===` rather than `==` because `===` will check if the type is the same ---no coercion happening---, whereas `==` allows for coercion. That's why `3 == '3'` is **true** but `3 === '3'` is **false**. 
 
@@ -106,7 +109,7 @@ There you have it, Javascript had just tricked us.
 I hope this was usefull to all of you. I will try to keep bringing more tricky Javascript questions.
 Feel free to give any feedback or let me know if you spot any error.
 
-Thanks for reading.
+Thanks for reading!
 
 ### *Important note
 
