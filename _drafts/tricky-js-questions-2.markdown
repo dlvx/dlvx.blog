@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Tricky JS Interview Questions Part 2"
-tagline: "By value, by reference & object comparissons"
+tagline: "Assignment by reference"
 date:   2018-01-4 17:50:00
 categories: main
 tags:
@@ -13,11 +13,94 @@ You can read part 1 **here**.
 
 Just like I told you on the previous post, the questions from these series are intended to trick the interviewees a little bit but these are no more than simple questions involving the core concepts of Javascript. 
 
-Today's questions involve the concepts of **assignment by value and by reference** and **object comparissons**.
+I've asked today's question to several people, juniors and seniors alike and most of the times I have received a wrong answer.
 
-I've asked today's questions to several people, and just like I did in part 1, I first start with a question that most of the interviewees would answer correctly, however most of them have failed at the final and tricky question, not knowing that they have already answered it correctly since the begining. 
+## What can we expect from the interviewee by asking this question? 
 
-Let's start with the first question then.
+We expect that the interviewee knows the concept of **assignment by reference**, when does it happen and how it differs from **assigment by value**. 
+
+Let's start!
+
+-----
+
+## What does the following console.log print?
+
+{% highlight javascript %}
+
+var a = ['Hello']
+var b = ['Hello']
+
+console.log(a === b)
+
+{% endhighlight %}
+
+So, what is it then? 
+I have almost always received a **true** as an answer. When I ask why, the most common explanations have been something like "*because both a and b are the same*" or "*because both a and b have the same contents and both are the same type*".
+
+The problem is that this is actually **false**. The first reason why this is **false** is because even tho both arrays have the same content, they are two independent objects in memory ---arrays are objects in Javascript---.
+
+The other and definitive reason is because what is assigned to `a` and `b` is not the arrays per se, but a reference to where this arrays are stored in memory. This is called **assignment by reference** and happens when we are assigning any kind of object to a variable ---objects, arrays and functions---.
+
+So when we do `a === b` we are comparing if both `a` and `b` have the same value and the same type, and this fails cause `a` holds a different reference than `b` cause both arrays were created separately and stored in different spots in memory.
+
+Don't worry if you are confused, I'll explain everything now:
+
+## What is the difference between assignment by value and assignment by reference and when do they happen? 
+
+Well, the key definitions for these two concepts are not something specific to Javascript but to other programming languages too and should be of general knowledge. 
+
+In short terms, **assigment by value** is when the variable holds the actual data it has been assigned with. This applies for when we are assigning data that is of a **primitive type**. For instance:
+
+{% highlight javascript %}
+
+var a = 1;
+var b = 'Hello';
+var c = true
+
+{% endhighlight %}
+
+Here, the variables `a`, `b` and `c` hold the values of `1`, `'Hello'` and `true` respectivelly ---those values are primitives---. 
+Another example would be the following:
+
+{% highlight javascript %}
+
+var a = 1;
+var b = a
+
+{% endhighlight %}
+
+Here both `a` and `b` hold the value of `1`. `b` having a copy of what's stored in `a`.
+
+When we talk about **assigment by reference**, the variables don't hold the actual data but a reference of where in memory that data resides. As I said before, this happens when we are assigning any kind of object to a variable. 
+
+Let's look at a simple example:
+
+{% highlight javascript %}
+
+var a = { name: 'José' }
+
+{% endhighlight %}
+
+What happens there is that the object of name José is being created in memory, but what is assigned to the variable `a` is a reference ---an address--- of where in memory this object is stored. 
+
+All this also happens when we pass parameters to a function. For example:
+
+{% highlight javascript %}
+
+var a = { name: 'José' }
+var b = 'Hello'
+
+function myFunc(person, greet){
+    // Your code here...
+}
+
+myFunc(a, b)
+
+{% endhighlight %}
+
+What happens there is that we are passing a reference to the object with name José, but we are passing the value of `'Hello'`. So **primitives** are **passed by value** and **objects** are passed by reference.
+
+--------------------------------------------
 
 ## What is the difference between assignment by value and assignment by reference? 
 
