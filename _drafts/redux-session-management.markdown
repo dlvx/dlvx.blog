@@ -1,47 +1,86 @@
 ---
 layout: post
-title:  "Session Storage Management using Redux Middleware"
+title:  "Persisting the Redux state in the Session Storage"
 tagline: "A shopping cart example"
 date:   2018-01-4 17:50:00
 categories: main
 tags:
 - Redux
-- Javascript
 ---
 
-During the last couple of months I was involved in two projects that use Redux. Both required to use either the local storage or the session storage to persist some of the data that was in the Redux store.
+During the last couple of weeks I was involved in two projects that use Redux. Both required to use either the Local Storage or the Session Storage to persist some of the data that was in the Redux state.
 
-One of the apps required to store the shopping cart data in the session storage. During the development of this requirement I faced three possible approaches that I want to share and illustrate in this post. 
+One of the apps required to store some shopping cart data in the Session Storage. During the development of this requirement I faced three possible approaches that I want to share and illustrate in this post. 
 
-The first one is possibly what will first come to mind and possibly the easiest one but incorrect if we want to respect the Redux approach of using pure functions for the actions and reducers. I'll still show it in here so you know what you shouln't do.
+The first one is the easiest but the one you shouldn't do and involves setting the Session Storage directly in the Redux actions or the reducers. The second one involves using the Redux Store's `subscribe()` method which will execute a callback any time an action has been dispatched. The third and last one involves using Redux Middleware, which allows us to execute some logic between the dispatch of an action and the execution of the reducers.
 
-The second one is fairly simple and involves using a store subscriber. This method was recommended by Dan Abramov in a StackOverflow answer regarding this same topic.
+Before looking at the approaches, let's take a look at the code involved before doing any manipulation of the Session Storage:
 
-The third and most advanced is using Redux middleware. Don't worry if you don't know what Redux middleware is cause I will explain it in here. 
-
-I'll go through all the three approaches starting with a simple shopping cart app built with React and Redux ---you can clone it from here---. What it currently does is to store the shopping cart items in the Redux store but it doesn't persist this data yet ---which is a common requierement in e-commerce sites---. We'll use the Session Storage for this particular case.
-
-
-The link to the repo with the final version will be available at the end of this post. 
-
-Let's just take a quick look at the app's components, reducers and actions.
+### Store Configuration
 
 {% highlight javascript %}
 
-
+// store configuration
 
 {% endhighlight %}
 
-
-Now, let's integrate the session storage management using the first approach. I'll explain why you shouldn't do it but it's still important to know it cause I think it could help you identify these kinds of bad practices when using Redux.
-
-What we will do here is to directly set and get the session storage data in the reducer.
-
+### Actions
 
 {% highlight javascript %}
 
+// actions
 
+{% endhighlight %}
+
+### Reducer
+
+{% highlight javascript %}
+
+// reducer
+
+{% endhighlight %}
+
+-----
+
+## Persisting the Session Storage
+
+Now that we've seen the codebase, let's look at the possible approaches to persist the Redux state in the Session Storage.
+
+### Setting the Session Storage directly inside the Redux actions/reducers (Don't do this)
+
+{% highlight javascript %}
+
+// setting session storage inside actions/reducers
 
 {% endhighlight %}
 
 The reason why you shouldn't do this is because Redux's reducers ---and action creators too--- should be **Pure Functions**. This mean that they shouldn't have secondary effects and their result should depend solely on the received params. So, the reducer's only responsability is to return a new version of the portion of the state it is resposible for ---in this case it would be the shopping cart state--- and this new version of the state depends on what is received from the actions. If we do something else ---just like storing data into the session storage--- it would mean the reducer will no longer be a Pure Function. 
+
+### Using the Redux Store's subscribe() method
+
+{% highlight javascript %}
+
+// Store subscribe()
+
+{% endhighlight %}
+
+
+### Using Redux Middleware
+
+{% highlight javascript %}
+
+// Store subscribe()
+
+{% endhighlight %}
+
+-----
+
+## Retrieving the Session Storage and putting it in the Redux Store
+
+OK, we have already persisted the Redux State in the Session Storage but we are still missing a key part and it is to retrieve the data from the Session Storage and store it in the Redux Store. We want this to happen when the app loads so the store is populated before any other action occurs. This is fairly simple to achieve by creating a function that retrieves the data and passes it to the configureStore function:
+
+{% highlight javascript %}
+
+// retrieving from session storage
+
+{% endhighlight %}
