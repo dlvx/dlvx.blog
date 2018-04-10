@@ -51,7 +51,7 @@ This is actually another question I usually ask in the interviews.
 
 The key definitions for these two concepts are not something specific to Javascript but to other programming languages too and should be of general knowledge. 
 
-In short terms, **assigment by value** is when the variable holds the actual data it has been assigned with. This applies for when we are assigning data that is of a **primitive type**. For instance:
+In short terms, **assigment by value** is when the variable holds the actual data it has been assigned with. This applies for when we are assigning data that is a **[Primitive][primitivesLink]{:target="_blank"}**. For instance:
 
 {% highlight javascript %}
 
@@ -89,6 +89,8 @@ All this also happens when we pass parameters to a function. When we pass a **pr
 
 It is important to know that when we pass parameters to a function, what this function has inside is a copy of what has been passed to it, and this applies to both values and references. 
 
+## Beware of assignment/passing by reference
+
 -----
 
 There you have it, Javascript had just tricked us. 
@@ -98,8 +100,5 @@ Feel free to give any feedback or let me know if you spot any error.
 
 Thanks for reading.
 
-### *Important note
 
-The order and direction in which the operators are evaluated is called **Operator Precedence and Associativity**. You can find a cool table about it in **[here][operatorsTabe]{:target="_blank"}**
-
-[operatorsTabe]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+[primitivesLink]: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
