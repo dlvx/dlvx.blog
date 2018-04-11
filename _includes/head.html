@@ -8,4 +8,8 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/css/cayman.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/css/zenburn.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/css/custom.css">
+
+  {% if jekyll.environment == 'production' %}
+  {% include analytics.html %}
+  {% endif %}
 </head>
