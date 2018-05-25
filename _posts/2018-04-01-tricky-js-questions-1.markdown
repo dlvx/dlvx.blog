@@ -2,7 +2,8 @@
 layout: post
 title:  "Tricky JS Interview Questions Part 1"
 tagline: "Coercion and operators"
-date:   2018-01-4 17:50:00
+date:   2018-04-01 17:50:00
+author: "José Del Valle"
 categories: main
 tags:
 - Javascript
@@ -17,7 +18,7 @@ The idea with this is to see how concentrated the interviewees are and how good 
 
 I usually start with simpler questions ---but related--- if the interviewee is a Junior Dev but most of the times I just ask the tricky questions right away. 
 
-I have asked today's question to around 20 people now, some with little experience and some with several years of experience, even more years than me ---sometimes a lot more--- and most of them have failed it. 
+I have asked today's question to around 20 people now, some with little experience and some with several years of experience, even more years than me ---sometimes a lot more--- and most of them have had a hard time answering it. 
 
 ## What can we expect from the interviewee by asking this question? 
 
