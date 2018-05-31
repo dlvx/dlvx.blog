@@ -1,6 +1,6 @@
 # Setup
 title:        "{...jsbw}"
-tagline:      Javascript...but why?
+tagline:      José Del Valle #Javascript...but why?
 baseurl:      ""
 paginate:     1
 include:      ["_pages"]

@@ -13,10 +13,10 @@ $text-secondary: #8a979c;
 /* General */
 
 .page-header { 
-    background-color: #000000; 
-    background-image: url('../assets/header-bg.png'); 
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: #000000; 
+    // background-image: url('../assets/header-bg.png'); 
+    // background-size: cover;
+    // background-repeat: no-repeat;
 }
 
 nav.main-nav ul {
@@ -65,4 +65,11 @@ nav.main-nav li a {
 /* Paddings */
 .padding-10 {
     padding: 10px
+}
+
+
+/* Responsive */
+
+.project-name {
+    padding-top: 1em;
 }
