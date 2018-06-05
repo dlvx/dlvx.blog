@@ -1,5 +1,6 @@
 # Setup
 title:        "{...jsbw}"
+description:  "Javascript Blog"
 tagline:      José Del Valle #Javascript...but why?
 baseurl:      ""
 paginate:     1
