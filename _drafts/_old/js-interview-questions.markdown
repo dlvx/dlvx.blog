@@ -42,19 +42,19 @@ As stated in the book [Javascript: The Definitive Guide](https://books.google.co
 
 It is actually the Javascript engine who assigns *undefined* to variables that have been declared but haven't been *initialized*. For example:
 
-{% highlight javascript %}
+```javascript
 let a //variable declaration. Javascript will assign the value 'undefined' to the variable 'a'
 console.log(a) //will return 'undefined'
-{% endhighlight %}
+```
 
 While ***null*** also represents a lack of existence, it has to be manually or programmatically assigned to a variable. This means it is never set "automatically" like *undefined*.
 
 It is recommended, not to assign *undefined* to a variable when we want it to have no value, *null* should be used instead.
 
-{% highlight javascript %}
+```javascript
 let a = undefined //not recommended
 let b = null //recommended
-{% endhighlight %}
+```
 
 ## If *null* is a primitive type then why **typeof** null equals 'object' ?
 [Read this](http://2ality.com/2013/10/typeof-null.html) and [this](https://stackoverflow.com/questions/18808226/why-is-typeof-null-object) :)
@@ -75,7 +75,7 @@ A method is just a function that belongs to an object.
 
 ***this*** is a property available inside a function that refers to the object that invokes it, in other words, it is a shortcut to the invoking object. It will always refer to an object. It is also available in the global scope, in which it will refer to the global window object.
 
-{% highlight javascript %}
+```javascript
 console.log(this) //'this' points the global window object
 
 function a(){
@@ -98,7 +98,7 @@ var c = {
 
 c.log(); //'this' points to the object 'c' because it is 'c' that it's invoking it.
 
-{% endhighlight %}
+```
 
 **this** can be explicitly set to a function by using the **bind()** method
 

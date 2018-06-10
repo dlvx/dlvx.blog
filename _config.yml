@@ -1,25 +1,23 @@
 # Setup
 title:        "{...jsbw}"
-description:  "Javascript Blog"
-tagline:      José Del Valle #Javascript...but why?
+description:  "The blog about everything Javascript!"
+tagline:      Javascript...but why?
 baseurl:      ""
 paginate:     1
 include:      ["_pages"]
 permalink:    /:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
 
 # About/contact
 author:
   name:       José Del Valle
   url:        http://dlvx.github.io/about
 
-# Gems
-gems:
-  - jekyll-paginate
-
 #Others
 markdown: kramdown
 sass:
   style: compressed
 
-plugins:
-  - jekyll-seo-tag

@@ -18,27 +18,27 @@ Before looking at the approaches, let's take a look at the code involved before 
 
 ### Store Configuration
 
-{% highlight javascript %}
+```javascript
 
 // store configuration
 
-{% endhighlight %}
+```
 
 ### Actions
 
-{% highlight javascript %}
+```javascript
 
 // actions
 
-{% endhighlight %}
+```
 
 ### Reducer
 
-{% highlight javascript %}
+```javascript
 
 // reducer
 
-{% endhighlight %}
+```
 
 -----
 
@@ -48,30 +48,30 @@ Now that we've seen the codebase, let's look at the possible approaches to persi
 
 ### Setting the Session Storage directly inside the Redux actions/reducers (Don't do this)
 
-{% highlight javascript %}
+```javascript
 
 // setting session storage inside actions/reducers
 
-{% endhighlight %}
+```
 
 The reason why you shouldn't do this is because Redux's reducers ---and action creators too--- should be **Pure Functions**. This mean that they shouldn't have secondary effects and their result should depend solely on the received params. So, the reducer's only responsability is to return a new version of the portion of the state it is resposible for ---in this case it would be the shopping cart state--- and this new version of the state depends on what is received from the actions. If we do something else ---just like storing data into the session storage--- it would mean the reducer will no longer be a Pure Function. 
 
 ### Using the Redux Store's subscribe() method
 
-{% highlight javascript %}
+```javascript
 
 // Store subscribe()
 
-{% endhighlight %}
+```
 
 
 ### Using Redux Middleware
 
-{% highlight javascript %}
+```javascript
 
 // Store subscribe()
 
-{% endhighlight %}
+```
 
 -----
 
@@ -79,8 +79,8 @@ The reason why you shouldn't do this is because Redux's reducers ---and action c
 
 OK, we have already persisted the Redux State in the Session Storage but we are still missing a key part and it is to retrieve the data from the Session Storage and store it in the Redux Store. We want this to happen when the app loads so the store is populated before any other action occurs. This is fairly simple to achieve by creating a function that retrieves the data and passes it to the configureStore function:
 
-{% highlight javascript %}
+```javascript
 
 // retrieving from session storage
 
-{% endhighlight %}
+```

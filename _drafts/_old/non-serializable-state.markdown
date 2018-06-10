@@ -26,20 +26,20 @@ The official redux docs says this is a bad practice and that we shouldn't put "n
 We'll begin with a simple example, that won't cause any trouble to us.
 Let's say we have the following portion of the state, which has some primitives and a function. 
 
-{% highlight javascript %}
+```javascript
 {
     id: "123",
     name: "José Del Valle",
     yearOfBirth: 1993,
     getAge: (yearOfBirth) => { return (new Date()).getFullYear() - yearOfBirth }
 }
-{% endhighlight %}
+```
 
 Now let's connect a component to that part of the state and use the getAge function.
 
-{% highlight javascript %}
+```javascript
 
-{% endhighlight %}
+```
 
 Excecuting this function wouldn't cause us any trouble as it is a pure function that depends solely on the received params.
 
