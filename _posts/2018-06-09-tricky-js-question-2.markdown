@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "Tricky Javascript Question #2"
 tagline: "Assignment by reference"
 date:   2018-06-09 18:42:00

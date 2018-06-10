@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "Tricky Javascript Question #1"
 tagline: "Coercion and operators"
 date:   2018-04-01 17:50:00
