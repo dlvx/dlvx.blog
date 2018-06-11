@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Persisting the Redux state in the local or session Storage"
+title:  "Persisting the Redux state in the local or session storage"
 tagline: "A shopping cart example"
 date:   2018-01-4 17:50:00
 categories: main
