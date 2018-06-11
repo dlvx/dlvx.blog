@@ -89,7 +89,120 @@ The only responsability of action creators should be to return an action object 
 
 ## 2. A better approach: store.subscribe()
 
-This is the approach suggested by Dan Abramov ---co-author of Redux--- in this Stack Overflow **[answer](https://stackoverflow.com/a/35675304/1438421){:target="_blank"}** and it's pretty straightforward to implement.
+This is the approach suggested by Dan Abramov ---co-author of Redux--- in this Stack Overflow **[answer](https://stackoverflow.com/a/35675304/1438421){:target="_blank"}** and it's pretty straightforward to implement. 
+
+You just have to use the `subscribe()` method which according to the official Redux documentation: 
+
+ > Adds a change listener. It will be called any time an action is dispatched, and some part of the state tree may potentially have changed.
+
+ You can implement this in the file where you set up the store, like so:
+
+ ```javascript
+import { createStore } from 'redux';
+import rootReducer from './rootReducer';
+
+const store = createStore(
+  rootReducer
+)
+
+store.subscribe(() => {
+  const state = store.getState()
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+    console.log(err);
+  }
+})
+
+```
+
+But what if you don't want to persist the entire state but just part of it? It's pretty straightforward, let's say we want to persist some shopping cart data. In a separate function we can do something like this: 
+
+```javascript
+function persistShoppingCart(state){
+  const data = state.shoppingCartState
+  try {
+    const serializedData = JSON.stringify(data);
+    localStorage.setItem('shoppingCart', data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { persistShoppingCart }
+```
+
+Then we just call it in the `subscribe()` method:
+
+ ```javascript
+import { createStore } from 'redux';
+import rootReducer from './rootReducer';
+import { persistShoppingCart } from './persistenceHelpers';
+
+const store = createStore(
+  rootReducer
+)
+
+store.subscribe(() => {
+  const state = store.getState()
+  persistShoppingCart(state)
+})
+
+```
+
+Now, how do we get the persisted data from the local storage and put it in the Redux state when the app starts? 
+
+We first add a loader function that will get the data from the local storage:
+
+```javascript
+function persistShoppingCart(state){ /* ... */ }
+
+function loadShoppingCartData(){  
+  try {
+    const serializedData = localStorage.getItem('shoppingCart')
+
+    return serializedData !== null ? 
+      { shoppingCart: JSON.parse(serializedData) } : undefined
+  } catch (err) {
+    return undefined
+  }
+}
+
+export { persistShoppingCart, loadShoppingCartData }
+```
+
+Then we just pass that function to the `createStore()` like so:
+
+ ```javascript
+import { createStore } from 'redux';
+import rootReducer from './rootReducer';
+import { persistShoppingCart, loadShoppingCartData } from './persistenceHelpers';
+
+function persistedState(){
+  return Object.assign(
+    {},
+    loadShoppingCartData(),
+    // Other loaders can go here
+  )
+}
+
+const store = createStore(
+  rootReducer,
+  persistedState()
+)
+
+store.subscribe(() => {
+  const state = store.getState()
+  persistShoppingCart(state)
+})
+
+```
+
+The `persistedState` function can excecute any loader function and return an object that will then be used as the initial application state, which we just pass to the `createStore` function. 
+
+The complexity of the persistence and loader functions would vary depending on the store's structure and if what you want to work with is deeply nested in the store, but the principles are the same. 
+
 
 ## 3. My favorite approach: Redux Middleware
 
