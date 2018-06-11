@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Persisting the Redux state in the Session Storage"
+title:  "Persisting the Redux state in the local or session Storage"
 tagline: "A shopping cart example"
 date:   2018-01-4 17:50:00
 categories: main
@@ -8,70 +8,91 @@ tags:
 - Redux
 ---
 
-During the last couple of weeks I was involved in two projects that use Redux. Both required to use either the Local Storage or the Session Storage to persist some of the data that was in the Redux state.
+A few months ago I was involved in two projects that use Redux. Both required to use either the Local Storage or the Session Storage to store some of the data that was in the Redux state.
 
-One of the apps required to store some shopping cart data in the Session Storage. During the development of this requirement I faced three possible approaches that I want to share and illustrate in this post. 
+One of the apps required to store some shopping cart data in the Local Storage. During the development of this requirement I faced three possible approaches that I want to share and illustrate in this post. 
 
-The first one is the easiest but the one you shouldn't do and involves setting the Session Storage directly in the Redux actions or the reducers. The second one involves using the Redux Store's `subscribe()` method which will execute a callback any time an action has been dispatched. The third and last one involves using Redux Middleware, which allows us to execute some logic between the dispatch of an action and the execution of the reducers.
+The first one is the easiest but not so good approach and involves setting the Local Storage directly in the Redux actions or the reducers. The second one involves using the Redux Store's `subscribe()` method which will execute a callback any time an action has been dispatched. The third and last one involves using Redux Middleware, which allows us to execute some logic between the dispatch of an action and the execution of the reducers.
 
-Before looking at the approaches, let's take a look at the code involved before doing any manipulation of the Session Storage:
+## Local/Session Storage use cases
 
-### Store Configuration
+Let's first take a look at the difference between Local Storage and Session Storage:
 
-```javascript
+ - **Local Storage**: Use this one when you want to persist the data. If you persist some data in the Local Storage you will then be able to retrieve it at any time even if you closed the browser. The only way of clearing the Local Storage is programatically via Javascript or by clearing the browser's cache. 
 
-// store configuration
+ The two methods we will use today are:
 
-```
+```javascript 
 
-### Actions
+localStorage.setItem('name', 'value');
+const foo = localStorage.getItem('name');
 
-```javascript
+``` 
 
-// actions
+ - **Session Storage**: Similar to Local Storage but the data won't persist and will be cleared when the page session ends. It's methods follow the same structure: 
 
-```
+```javascript 
 
-### Reducer
+sessionStorage.setItem('name', 'value');
+const foo = sessionStorage.getItem('name');
 
-```javascript
+``` 
 
-// reducer
+Make sure to use the one that fits your requirements. The good thing is that the same approaches can be used with either.
 
-```
+Let's now take a look at the approaches we can do to set/get data from the either kind of storage:
 
------
+## 1. The bad approach: setting/getting the storage directly in the reducers/actions
 
-## Persisting the Session Storage
+I wanna talk about this one cause I've seen it being used. It's OK to think about this one as the first option and the easiest but it's not the ideal one. Let's take a look at an example.
 
-Now that we've seen the codebase, let's look at the possible approaches to persist the Redux state in the Session Storage.
-
-### Setting the Session Storage directly inside the Redux actions/reducers (Don't do this)
-
-```javascript
-
-// setting session storage inside actions/reducers
-
-```
-
-The reason why you shouldn't do this is because Redux's reducers ---and action creators too--- should be **Pure Functions**. This mean that they shouldn't have secondary effects and their result should depend solely on the received params. So, the reducer's only responsability is to return a new version of the portion of the state it is resposible for ---in this case it would be the shopping cart state--- and this new version of the state depends on what is received from the actions. If we do something else ---just like storing data into the session storage--- it would mean the reducer will no longer be a Pure Function. 
-
-### Using the Redux Store's subscribe() method
+Let's say you want to persist the data in an action creator. You may think it makes sense to kill two birds with one stone if you do so:
 
 ```javascript
 
-// Store subscribe()
+function setName(name) {
+
+  localStorage.setItem('name', name); // <-- Here
+
+  return {
+    type: SET_NAME,
+    name
+  }
+}
 
 ```
 
-
-### Using Redux Middleware
+Let's say you don't do it in an action creator but in a Reducer like so:
 
 ```javascript
 
-// Store subscribe()
+function formReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_NAME:
+
+      localStorage.setItem('name', name); // <-- Here
+
+      return Object.assign({}, state, {
+        name: action.name
+      })
+    default:
+      return state
+  }
+}
 
 ```
+### Why is this a bad approach?
+
+Even tho this will work OK and the same data you pass to the reducer will be persisted in the Local Storage, it breaks one of the principles of Redux, which is that reducers and action creators should be **Pure Functions**. This means that their result should depend solely on the received params and more importantly in this case, that they shouldn’t have secondary effects. 
+
+The only responsability of action creators should be to return an action object and the only responsability of a reducer should be to return a new state based on the received actions.
+
+## 2. A better approach: store.subscribe()
+
+This is the approach suggested by Dan Abramov ---co-author of Redux--- in this Stack Overflow **[answer](https://stackoverflow.com/a/35675304/1438421){:target="_blank"}** and it's pretty straightforward to implement.
+
+## 3. My favorite approach: Redux Middleware
+
 
 -----
 
