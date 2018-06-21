@@ -38,9 +38,9 @@ const foo = sessionStorage.getItem('name');
 
 ``` 
 
-Make sure to use the one that fits your requirements. The good thing is that the same approaches can be used with either.
+Make sure to use the one that fits your requirements. The good thing is that the same approaches can be used with both.
 
-Let's now take a look at the approaches we can do to set/get data from the either kind of storage:
+Let's now take a look at the approaches we can do to set/get data from the either kind of storage while using Redux:
 
 ## 1. The bad approach: setting/getting the storage directly in the reducers/actions
 
@@ -72,9 +72,10 @@ function formReducer(state = initialState, action) {
 
       localStorage.setItem('name', name); // <-- Here
 
-      return Object.assign({}, state, {
+      return {
+        ...state, 
         name: action.name
-      })
+      }
     default:
       return state
   }
@@ -84,8 +85,6 @@ function formReducer(state = initialState, action) {
 ### Why is this a bad approach?
 
 Even tho this will work OK and the same data you pass to the reducer will be persisted in the Local Storage, it breaks one of the principles of Redux, which is that reducers and action creators should be **Pure Functions**. This means that their result should depend solely on the received params and more importantly in this case, that they shouldn’t have secondary effects. 
-
-The only responsability of action creators should be to return an action object and the only responsability of a reducer should be to return a new state based on the received actions.
 
 ## 2. A better approach: store.subscribe()
 
@@ -151,6 +150,8 @@ store.subscribe(() => {
 
 ```
 
+### Getting the data back when the app starts
+
 Now, how do we get the persisted data from the local storage and put it in the Redux state when the app starts? 
 
 We first add a loader function that will get the data from the local storage:
@@ -189,7 +190,7 @@ function persistedState(){
 
 const store = createStore(
   rootReducer,
-  persistedState()
+  persistedState() // setting the initial state
 )
 
 store.subscribe(() => {
@@ -206,6 +207,18 @@ The complexity of the persistence and loader functions would vary depending on t
 
 ## 3. My favorite approach: Redux Middleware
 
+
+One of my favorite features in Redux is **[Middleware](https://redux.js.org/advanced/middleware){:target="_blank"}** which according to the official docs:
+
+> Provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+
+Imagine a middleware function as something that will execute between the moment you dispatch an action and the moment a reducer executes. You can use the data comming from the action and also the data in the state and do whatever you need. 
+
+The coolest part is that you can chain several middleware functions if you want to execute different things for different kinds of actions.
+
+Using middleware isolates any logic you want to derive from an action, any side effect that we want to avoid having in the action creators or reducers. It is useful for persisting data in the local or session storage, [logging](https://github.com/evgenyrodionov/redux-logger){:target="_blank"}, calling APIs, event tracking and analytics. 
+
+Let's see how we can implement a middleware function that will persist our data in the local storage:
 
 -----
 
