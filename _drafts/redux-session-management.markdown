@@ -55,7 +55,7 @@ function setName(name) {
   localStorage.setItem('name', name); // <-- Here
 
   return {
-    type: SET_NAME,
+    type: "SET_NAME",
     name
   }
 }
@@ -68,7 +68,7 @@ Let's say you don't do it in an action creator but in a Reducer like so:
 
 function formReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_NAME:
+    case "SET_NAME":
 
       localStorage.setItem('name', name); // <-- Here
 
@@ -219,6 +219,22 @@ The coolest part is that you can chain several middleware functions if you want 
 Using middleware isolates any logic you want to derive from an action, any side effect that we want to avoid having in the action creators or reducers. It is useful for persisting data in the local or session storage, [logging](https://github.com/evgenyrodionov/redux-logger){:target="_blank"}, calling APIs, event tracking and analytics. 
 
 Let's see how we can implement a middleware function that will persist our data in the local storage:
+
+```javascript
+const persistShoppingCart = store => next => action => {
+
+  if(action.type === "ADD_ITEM"){
+    let data = action.item
+    try {
+      const serializedData = JSON.stringify(data);
+      localStorage.setItem('luke', serializedData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  return next(action)
+}
+```
 
 -----
 

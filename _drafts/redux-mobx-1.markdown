@@ -19,7 +19,7 @@ After some time working with Redux I began to wonder if there was an alternative
 
 In this guide I'll try to cover the most important concepts but won't try to tell you which one is better nor will tell you why you should use one or the other cause at the end it's all up to you and the requirements of your project.
 
-I expect that you already know some Redux cause I will explain almost everything **from a Redux developer perspective** that is moving to **MobX** for the sake of learning.
+I expect that you already know some Redux cause I will explain almost everything **from a Redux developer perspective** who's moving to **MobX** for the sake of learning.
 
 ## What is MobX ? 
 
@@ -37,3 +37,102 @@ Having said that:
 
 - **Mobx** state is mutable. **Actions** can be any method or function that directly mutate the state. 
 
+In a nutshell, we are going from this:
+
+```javascript
+
+/*
+    Action Creator 
+    - Returns an action object. 
+    - Do not mutate the state.
+    - Has to be dispatched.
+    - Pure function.
+*/
+const setUser = (user) => {
+    /*
+        Action Object 
+        - Plain JS Object with information that will be handled by the reducer 
+    */
+    return {
+        type: "SET_USER",
+        user
+    }
+}
+
+/*
+    Another Action Object:
+    - Used to tell the reducer to clear the state (return a default or empty state)
+    - Has to be dispatched
+*/
+const CLEAR_USER = {
+    type: "CLEAR_USER",
+}
+
+
+const initialState = {}
+
+/* 
+    Reducer: 
+    - Doesn't mutate the state. 
+    - Returns a new version instead.
+    - Gets the updated information from the dispatched actions.
+    - Pure function.
+*/
+const userReducer = (state = initialState, action) => {
+    
+    switch(action.type){
+        case "SET_USER":
+            return {...state, action.user}
+        case "CLEAR_USER":
+            return initialState
+        default:
+            return state
+    }
+}
+```
+
+To this:
+
+```javascript
+class UserStore {
+
+    @observable user = {}; // our user state
+
+    /*
+        Action:
+        - Method of UserStore
+        - Directly mutates the state (the user)
+    */
+    setUser(user) { 
+        this.user = user
+    }
+
+    /*
+        Action:
+        - Method of UserStore
+        - Directly mutates the state (the user)
+    */
+    clearUser() {
+        this.user = {}
+    }
+}
+
+
+const userStore = new UserStore(); // We instantiate the userStore
+
+```
+
+And how do we use this store to update the user state?
+
+```javascript
+
+const user = {
+    name: "Jose"
+}
+userStore.setUser(user)
+
+```
+
+We can export the userStore and import it whenever we want and pass it as prop or params to our components or functions. 
+
+No need to import and dispatch actions like in Redux. 
