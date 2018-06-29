@@ -118,6 +118,8 @@ Well, that was the first tricky Javascript question and my explanation.
 I hope this was usefull to all of you. I will try to keep bringing more tricky Javascript questions.
 Feel free to give any feedback and thanks for reading!
 
+**PS** You can now read part 2 **[here]({{ site.baseurl }}{% post_url 2018-06-09-tricky-js-question-2 %})**
+
 ### *Important note
 
 The order and direction in which the operators are evaluated is called **Operator Precedence and Associativity**. You can find a cool table about it in **[here][operatorsTabe]{:target="_blank"}**
