@@ -6,7 +6,7 @@ permalink: "/about/"
 
 ## About me
 
-
+<!--
 Hello all!
 
 My name is José Del Valle and I am a Software Engineer from Costa Rica. 
@@ -25,3 +25,5 @@ Why?
 I gratuated as a Software Engineer from the Universidad Nacional ---National University--- from Costa Rica in 2015, and have worked since then.
 
 https://www.melyssagriffin.com/about-me-page-blog/?utm_content=buffercd99e&utm_medium=social&utm_source=pinterest.com&utm_campaign=buffer
+
+-->
